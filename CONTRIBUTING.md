@@ -2,12 +2,38 @@
 
 ## Starting a local instance
 
-This starts Jekyll and Webpack.
+This starts Jekyll and Webpack. This requires recent versions of [Node.js], [Yarn], [Ruby] and [Bundler] installed.
 
-```
+```bash
 yarn install
 bundle install
 env PORT=4001 yarn run dev
+```
+
+[node.js]: https://nodejs.org/en/download/package-manager/
+[ruby]: https://www.ruby-lang.org/en/documentation/installation/
+[yarn]: https://yarnpkg.com/en/docs/install
+[bundler]: https://bundler.io/
+
+### Docker
+
+You can also run a local instance using Docker. This is the preferred method, especially for Windows.
+You only need to install Docker ([macOS](https://docs.docker.com/docker-for-mac/install/), [Windows](https://docs.docker.com/docker-for-windows/install/), [Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/), [Arch Linux](https://www.archlinux.org/packages/community/x86_64/docker/), [other](https://www.docker.com/community-edition#download)).
+
+First time setup:
+
+```bash
+# Build images (takes ~12mins)
+docker-compose build
+
+# First-time setup
+docker-compose run --rm web bundle install && yarn
+```
+
+Starting the server:
+
+```bash
+docker-compose up
 ```
 
 ## CSS classes

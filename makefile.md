@@ -1,16 +1,19 @@
 ---
 title: Makefile
-hljs_languages: [makefile]
+prism_languages: [makefile]
 layout: 2017/sheet
+category: CLI
 ---
 
 ## Var assignment
 
 ```makefile
-uglify = $(uglify)        # assignment
-compressor := $(uglify)   # lazy assignment
+uglify = $(uglify)        # lazy assignment
+compressor := $(uglify)   # immediate assignment
 prefix ?= /usr/local      # safe assignment
 ```
+
+`=` expressions are only evaluated when they're being used.
 
 ## Magic variables
 
@@ -21,13 +24,12 @@ out.o: src.c src.h
   $^   # "src.c src.h" (all prerequisites)
 
 %.o: %.c
-  $%   # target member name ("foo" in "foo.c")
+  $*   # the 'stem' with which an implicit rule matches ("foo" in "foo.c")
 
 also:
   $+   # prerequisites (all, with duplication)
   $?   # prerequisites (new ones)
   $|   # prerequisites (order-only?)
-  $*   # basename without extension of the target (?)
 
   $(@D) # target directory
 ```
